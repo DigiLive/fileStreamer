@@ -1,0 +1,40 @@
+{
+    "name": "digilive/file-streamer",
+    "description": "Stream a file or serve a file as (resumeable) download",
+    "keywords": [
+        "php",
+        "download",
+        "resumeable",
+        "stream"
+    ],
+    "type": "library",
+    "minimum-stability": "stable",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Ferry Cools",
+            "email": "info@digilive.nl"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-fileinfo": "*"
+    },
+    "require-dev": {
+        "digilive/git-changelog": "^v1.0.1",
+        "phpunit/phpunit": "^9",
+        "mikey179/vfsstream": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "DigiLive\\FileStreamer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DigiLive\\": "tests/supportFiles/DigiLive/",
+            "DigiLive\\FileStreamer\\Tests\\": "tests/",
+            "DigiLive\\FileStreamer\\": "tests/supportFiles/"
+        }
+    }
+}
