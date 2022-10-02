@@ -243,6 +243,7 @@ TXT;
 
     /**
      * Test if the correct data is being served when no range is requested.
+     * Also, it tests setting a custom Content-Type.
      *
      * @return void
      */
@@ -265,8 +266,10 @@ TXT;
         // Inline disposition Test.
         Output::reset();
         $mock->setInline(true);
+        $mock->setMimeType('digilive/test');
 
         $expectedHeaders = array_merge(self::defaultHeaders, ['Content-Disposition: inline']);
+        $expectedHeaders[4] = 'Content-Type: digilive/test';
 
         try {
             // Suppress warning or method will be aborted.

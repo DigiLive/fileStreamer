@@ -59,6 +59,10 @@ class FileStreamer
      * @var false|resource Handle to the file to serve.
      */
     private $filePointer;
+    /**
+     * @var string|null If not null, it defines type mimetype of the file to download.
+     */
+    private ?string $mimeType = null;
 
     /**
      * Class Constructor.
@@ -88,6 +92,20 @@ class FileStreamer
     public function setInline(bool $inline = true): void
     {
         $this->inline = $inline;
+    }
+
+    /**
+     * Set the mimetype of to file to serve.
+     *
+     * When not null, it overrides getting the mimetype automatically when the headers are sent.
+     *
+     * @param   string|null  $mimeType  the mimetype of the file to serve.
+     *
+     * @return void
+     */
+    public function setMimeType(?string $mimeType): void
+    {
+        $this->mimeType = $mimeType;
     }
 
     /**
@@ -231,8 +249,11 @@ class FileStreamer
         // Get file mimetype.
         $filePath = $this->fileInfo->getPathname();
         $fileSize = $this->fileInfo->getSize();
-        $fileInfo = new finfo();
-        $mimeType = @$fileInfo->file($filePath, FILEINFO_MIME_TYPE);
+        $mimeType = $this->mimeType;
+        if (null === $mimeType) {
+            $fileInfo = new finfo();
+            $mimeType = @$fileInfo->file($filePath, FILEINFO_MIME_TYPE);
+        }
 
         // Caching headers as IE6 workaround.
         header('Pragma: public');

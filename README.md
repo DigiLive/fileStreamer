@@ -19,6 +19,7 @@ your concerns remain unanswered.
 * Serve a complete file.
 * Serve a single byte range of a file.
 * Serve multiple byte ranges of a file.
+* Set a custom mimetype.
 
 ## Requirements
 
