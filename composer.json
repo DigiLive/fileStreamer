@@ -21,7 +21,7 @@
         "ext-fileinfo": "*"
     },
     "require-dev": {
-        "digilive/git-changelog": "^v1.0.1",
+        "digilive/git-changelog": "^v2.0",
         "phpunit/phpunit": "^9",
         "mikey179/vfsstream": "^1.6"
     },
